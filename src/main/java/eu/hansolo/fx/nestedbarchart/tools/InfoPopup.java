@@ -69,9 +69,7 @@ public class InfoPopup extends Popup {
 
     // ******************** Initialization ************************************
     private void init() {
-        setAutoHide(true);
         setAutoFix(true);
-        //setHideOnEscape(true);
 
         fadeIn = new FadeTransition(Duration.millis(200), hBox);
         fadeIn.setFromValue(0);
@@ -149,6 +147,7 @@ public class InfoPopup extends Popup {
 
     // ******************** Methods *******************************************
     public void animatedShow(final Window WINDOW) {
+        delay.stop();
         show(WINDOW);
         fadeIn.play();
     }

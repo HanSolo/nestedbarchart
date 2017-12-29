@@ -22,14 +22,17 @@ import eu.hansolo.fx.nestedbarchart.series.Series;
 
 public class SelectionEvent<T extends Item> {
     private Series<T> series;
-    private Item      item;
+    private T         item;
 
 
     // ******************** Constructors **************************************
+    public SelectionEvent(final T ITEM) {
+        this(null, ITEM);
+    }
     public SelectionEvent(final Series<T> SERIES) {
         this(SERIES, null);
     }
-    public SelectionEvent(final Series<T> SERIES, final Item ITEM) {
+    public SelectionEvent(final Series<T> SERIES, final T ITEM) {
         series = SERIES;
         item   = ITEM;
     }
@@ -38,7 +41,7 @@ public class SelectionEvent<T extends Item> {
     // ******************** Methods *******************************************
     public Series<T> getSeries() { return series; }
 
-    public Item getItem() { return item; }
+    public T getItem() { return item; }
 
     @Override public String toString() {
         StringBuilder sb = new StringBuilder().append("{\n")
