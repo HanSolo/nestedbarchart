@@ -16,8 +16,10 @@
 
 package eu.hansolo.fx.nestedbarchart.tools;
 
+import eu.hansolo.fx.nestedbarchart.Item;
 import eu.hansolo.fx.nestedbarchart.event.SelectionEvent;
 import eu.hansolo.fx.nestedbarchart.font.Fonts;
+import eu.hansolo.fx.nestedbarchart.series.Series;
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
@@ -169,9 +171,15 @@ public class InfoPopup extends Popup {
     }
 
     public void update(final SelectionEvent EVENT) {
-        seriesNameText.setText(EVENT.getSeries().getName());
-        seriesValueText.setText(String.format(Locale.US, formatString, EVENT.getSeries().getSumOfAllItems()));
-        itemNameText.setText(null == EVENT.getItem() ? "-" : EVENT.getItem().getName());
-        itemValueText.setText(null == EVENT.getItem() ? "-" : String.format(Locale.US, formatString, EVENT.getItem().getValue()));
+        Series series = EVENT.getSeries();
+        Item   item   = EVENT.getItem();
+        if (null != series) {
+            seriesNameText.setText(EVENT.getSeries().getName());
+            seriesValueText.setText(String.format(Locale.US, formatString, EVENT.getSeries().getSumOfAllItems()));
+        }
+        if (null != item) {
+            itemNameText.setText(null == EVENT.getItem() ? "-" : EVENT.getItem().getName());
+            itemValueText.setText(null == EVENT.getItem() ? "-" : String.format(Locale.US, formatString, EVENT.getItem().getValue()));
+        }
     }
 }
