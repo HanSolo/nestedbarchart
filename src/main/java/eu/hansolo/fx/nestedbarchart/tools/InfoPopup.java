@@ -142,18 +142,15 @@ public class InfoPopup extends Popup {
         getContent().addAll(hBox);
     }
 
-    private void registerListeners() {
-        showingProperty().addListener(o -> delay.play());
-    }
+    private void registerListeners() { }
 
 
     // ******************** Methods *******************************************
     public void animatedShow(final Window WINDOW) {
-        delay.stop();
         show(WINDOW);
         fadeIn.play();
+        delay.playFromStart();
     }
-
     public void animatedHide() { fadeOut.play(); }
 
     public void setTimeout(final long TIMEOUT) {
